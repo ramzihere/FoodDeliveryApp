@@ -11,7 +11,7 @@ import {
 
 import {icons, images, SIZES, COLORS, FONTS} from '../constants';
 
-const Home = () => {
+const Home = ({navigation}) => {
   // Dummy Datas
 
   const initialCurrentLocation = {
@@ -465,7 +465,11 @@ const Home = () => {
   function renderRestaurantList() {
     const renderItem = ({item}) => {
       return (
-        <TouchableOpacity style={{marginBottom: SIZES.padding * 2}}>
+        <TouchableOpacity
+          style={{marginBottom: SIZES.padding * 2}}
+          onPress={() =>
+            navigation.navigate('Restaurant', {item, currentLocation})
+          }>
           <View style={{marginBottom: SIZES.padding}}>
             <Image
               source={item.photo}
@@ -514,6 +518,19 @@ const Home = () => {
                   </View>
                 );
               })}
+              {[1, 2, 3].map((priceRating) => (
+                <Text
+                  key={priceRating}
+                  style={{
+                    ...FONTS.body3,
+                    color:
+                      priceRating <= item.priceRating
+                        ? COLORS.black
+                        : COLORS.darkgray,
+                  }}>
+                  $
+                </Text>
+              ))}
             </View>
           </View>
         </TouchableOpacity>
