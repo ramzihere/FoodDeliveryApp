@@ -58,7 +58,7 @@ const OrderDelivery = ({navigation, route}) => {
     setRegion(newRegion);
     mapView.current.animateToRegion(newRegion, 200);
   }
-
+  //added comment
   function zoomOut() {
     let newRegion = {
       latitude: region.latitude,
